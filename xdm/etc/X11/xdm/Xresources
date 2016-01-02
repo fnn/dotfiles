@@ -1,0 +1,54 @@
+xlogin*login.translations: #override \
+	Ctrl<Key>R: abort-display()\n\
+	<Key>F1: set-session-argument(failsafe) finish-field()\n\
+	<Key>Delete: delete-character()\n\
+	<Key>Left: move-backward-character()\n\
+	<Key>Right: move-forward-character()\n\
+	<Key>Home: move-to-begining()\n\
+	<Key>End: move-to-end()\n\
+	Ctrl<Key>KP_Enter: set-session-argument(failsafe) finish-field()\n\
+	<Key>KP_Enter: set-session-argument() finish-field()\n\
+	Ctrl<Key>Return: set-session-argument(failsafe) finish-field()\n\
+	<Key>Return: set-session-argument() finish-field()
+
+xlogin*namePrompt: \040\040\040\040\040\040\040Login:
+xlogin*greeting: 
+xlogin*fail: Computer sagt nein!
+
+
+xlogin*greetFont: -adobe-avantgarde-bold-o-normal--14-240-75-75-p-138-iso8859-1
+xlogin*font: -adobe-avantgarde-medium-r-normal--10-180-75-75-p-98-iso8859-1
+xlogin*promptFont: -adobe-helvetica-bold-r-normal--10-180-75-75-p-103-iso8859-1
+xlogin*failFont: -adobe-helvetica-bold-r-normal--10-180-75-75-p-103-iso8859-1
+xlogin*greetFace:	Avantgarde-14
+xlogin*face: 		Avantgarde-10
+xlogin*promptFace: 	Avantgarde-10:bold
+xlogin*failFace: 	Avantgarde-10:bold
+
+
+#ifdef COLOR
+xlogin*shdColor: black
+xlogin*hiColor: black
+xlogin*background: black
+!xlogin*foreground: Blue3
+xlogin*greetColor: Blue3
+xlogin*failColor: red
+*Foreground: white
+*Background: #fffff0
+#else
+xlogin*shdColor: black
+xlogin*hiColor: black
+#endif
+
+XConsole.text.geometry:	480x130
+XConsole.verbose:	true
+XConsole*iconic:	true
+XConsole*font:		fixed
+
+Chooser*geometry:		700x500+300+200
+Chooser*allowShellResize:	false
+Chooser*viewport.forceBars:	true
+Chooser*label.font:		*-new century schoolbook-bold-i-normal-*-240-*
+Chooser*label.label:		XDMCP Host Menu from CLIENTHOST
+Chooser*list.font:		-*-*-medium-r-normal-*-*-230-*-*-c-*-iso8859-1
+Chooser*Command.font:		*-new century schoolbook-bold-r-normal-*-180-*
