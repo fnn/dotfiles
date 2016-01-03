@@ -38,8 +38,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+w kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+a exec j4-dmenu-desktop
-bindsym $mod+a exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -p '#' -nb '#131617' -nf '#888888' -sb '#B96659' -sf '#FFFFFF'"
+bindsym $mod+a exec i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
