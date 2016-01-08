@@ -23,7 +23,8 @@ client.urgent               $rd        $rd         $tx
 exec --no-startup-id xsetroot -solid "#000"
 
 #
-hide_edge_borders both
+#hide_edge_borders both
+new_window 1pixel
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
