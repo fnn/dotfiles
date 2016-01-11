@@ -26,6 +26,13 @@ alias agr='sudo apt-get remove'
 # ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
 # ┗━┛ ╹ ┗━┛╹  ╹ 
 
+setopt auto_cd
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+alias md="mkdir -p"
+
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
