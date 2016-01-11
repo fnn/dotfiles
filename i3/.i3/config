@@ -25,7 +25,7 @@ exec --no-startup-id xsetroot -solid "#000"
 #
 #hide_edge_borders both
 new_window pixel 3
-for_window [class="chrome"] border pixel 0
+for_window [class="chromium-browser"] border pixel 0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -35,6 +35,9 @@ bindsym $mod+Return exec urxvt
 
 # screenshot with scrot
 #bindsym $mod+Shift+p exec --no-startup-id "scrot -s"
+
+# x selection paste
+bindsym $mod+shift+v exec --no-startup-id "xdotool click 2"
 
 # kill focused window
 bindsym $mod+Shift+w kill
