@@ -23,6 +23,14 @@ alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
 
 
+# ┏━┓┏━┓
+# ┣━┛┗━┓
+# ╹  ┗━┛
+
+alias psa="ps aux"
+alias psg="ps aux | grep "
+
+
 # ┏━┓╺┳╸╻ ╻┏━╸┏━╸                                                                 
 # ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
 # ┗━┛ ╹ ┗━┛╹  ╹ 
