@@ -25,7 +25,7 @@ alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 # ┣━┛┗━┓
 # ╹  ┗━┛
 alias psa="ps aux"
-alias psg="ps aux | grep "
+alias psg="ps aux | grep"
 
 
 # ┏━╸╺┳┓
@@ -43,6 +43,7 @@ alias ....="cd ../../.."
 alias ll="ls -lahF --color=auto"
 alias ls="ls --color=auto"
 alias lsl="ls -lhF --color=auto"
+alias lsg="ll | grep"
 
 
 # ┏┓╻╻ ╻╻┏┳┓
