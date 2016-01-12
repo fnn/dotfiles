@@ -58,6 +58,7 @@ alias vim="nvim"
 # ┏┳┓┏━┓┏━╸╻ ╻
 # ┃┃┃┣━┫┣╸ ┣━┫
 # ╹ ╹╹ ╹┗━╸╹ ╹
+alias todo='grep "FIXME" * ; grep "TODO" * ; grep "XXX" *'
 alias md="mkdir -p"
 alias del="rm -r"
 function hs
