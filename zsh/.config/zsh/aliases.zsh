@@ -1,7 +1,15 @@
+# ╺┳┓┏━╸┏┓ ╻┏━┓┏┓╻
+#  ┃┃┣╸ ┣┻┓┃┣━┫┃┗┫
+# ╺┻┛┗━╸┗━┛╹╹ ╹╹ ╹
+alias _="sudo"
+alias age='apt-get'
+alias agi='sudo apt-get install'
+alias agr='sudo apt-get remove'
+
+
 # ┏━╸╻╺┳╸
 # ┃╺┓┃ ┃ 
 # ┗━┛╹ ╹
-
 alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
@@ -13,45 +21,43 @@ alias gst='git status'
 alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 
-# ╺┳┓┏━╸┏┓ ╻┏━┓┏┓╻
-#  ┃┃┣╸ ┣┻┓┃┣━┫┃┗┫
-# ╺┻┛┗━╸┗━┛╹╹ ╹╹ ╹
-
-alias _="sudo"
-alias age='apt-get'
-alias agi='sudo apt-get install'
-alias agr='sudo apt-get remove'
-
-
 # ┏━┓┏━┓
 # ┣━┛┗━┓
 # ╹  ┗━┛
-
 alias psa="ps aux"
 alias psg="ps aux | grep "
 
 
-# ┏━┓╺┳╸╻ ╻┏━╸┏━╸                                                                 
-# ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
-# ┗━┛ ╹ ┗━┛╹  ╹ 
-
+# ┏━╸╺┳┓
+# ┃   ┃┃
+# ┗━╸╺┻┛
 setopt auto_cd
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-alias md="mkdir -p"
 
-alias del="rm -r"
-
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
-
+# ╻  ┏━┓
+# ┃  ┗━┓
+# ┗━╸┗━┛
 alias ll="ls -lahF --color=auto"
 alias ls="ls --color=auto"
 alias lsl="ls -lhF --color=auto"
 
+
+# ┏┓╻╻ ╻╻┏┳┓
+# ┃┗┫┃┏┛┃┃┃┃
+# ╹ ╹┗┛ ╹╹ ╹
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+
+
+# ┏┳┓┏━┓┏━╸╻ ╻
+# ┃┃┃┣━┫┣╸ ┣━┫
+# ╹ ╹╹ ╹┗━╸╹ ╹
+alias md="mkdir -p"
+alias del="rm -r"
 function hs
 {
     history | grep $*
