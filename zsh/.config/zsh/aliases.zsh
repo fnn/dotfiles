@@ -65,3 +65,4 @@ function hs
     history | grep $*
 }
 alias hsi='hs -i'
+alias calc='noglob perl -e '\''shift; $x = eval qq(@ARGV); print $x; printf " 0x%x 0%o %b\n", $x, $x, $x'\'' _' ' "'
