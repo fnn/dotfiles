@@ -17,6 +17,7 @@ alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 #  ┃┃┣╸ ┣┻┓┃┣━┫┃┗┫
 # ╺┻┛┗━╸┗━┛╹╹ ╹╹ ╹
 
+alias _="sudo"
 alias age='apt-get'
 alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
