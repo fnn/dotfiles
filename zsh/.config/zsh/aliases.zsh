@@ -2,6 +2,7 @@
 #  ┃┃┣╸ ┣┻┓┃┣━┫┃┗┫
 # ╺┻┛┗━╸┗━┛╹╹ ╹╹ ╹
 alias _="sudo"
+alias pls='sudo $(fc -ln -1)'
 alias age='apt-get'
 alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
