@@ -33,6 +33,8 @@ alias ....="cd ../../.."
 
 alias md="mkdir -p"
 
+alias del="rm -r"
+
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
