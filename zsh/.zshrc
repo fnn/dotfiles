@@ -17,5 +17,7 @@ alias cpu8='echo "80" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_p
 alias cpu9='echo "90" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct'
 alias cpu0='echo "100" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct'
 
+export EDITOR=nvim
+
 # Virtualenv
 #export WORKON_HOME=~/Development/Python/
