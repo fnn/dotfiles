@@ -2,28 +2,21 @@ set $mod Mod4
 font pango:Source Code Pro for Powerline 7
 
 # color defines
-set $bg     #1c1c1e
-set $fg     #9f9f9f
-set $hi     #efef8f
-set $ac     #444444
-set $tx     #040404
-set $ia     #8f8f8f
-set $be     #8faf9f
-set $yw     #ccdc90
-set $gn     #88b090
-set $rd     #e89393
+set $bg     #131617
+set $bo     #444444
+set $tx     #cccccc
+set $hi     #4395de
 
 # set some nice colors      border     background  text
-client.focused              $ac        $ac         $tx
-client.unfocused            $bg        $bg         $ia
-client.focused_inactive     $bg        $bg         $ac
-client.urgent               $rd        $rd         $tx
+client.focused              $bg        $bo         $tx
+client.unfocused            $bg        $bg         $tx
+client.focused_inactive     $bg        $bg         $tx
+client.urgent               $hi        $hi         $bg
 
 #bg color
-exec --no-startup-id xsetroot -solid "#000"
+exec --no-startup-id xsetroot -solid "$bg"
 
-#
-#hide_edge_borders both
+# window settings
 new_window pixel 3
 for_window [class="chromium-browser"] border pixel 0
 
@@ -32,9 +25,6 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec urxvt
-
-# screenshot with scrot
-#bindsym $mod+Shift+p exec --no-startup-id "scrot -s"
 
 # x selection paste
 bindsym $mod+shift+v exec --no-startup-id "xdotool click 2"
@@ -137,34 +127,32 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym odiaeresis resize grow width 10 px or 10 ppt
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym odiaeresis resize grow width 10 px or 10 ppt
 
-        bindsym Left resize grow width 10 px or 10 ppt
-        bindsym Down resize shrink height 10 px or 10 ppt
-        bindsym Up resize grow height 10 px or 10 ppt
-        bindsym Right resize shrink width 10 px or 10 ppt
+    bindsym Left resize grow width 10 px or 10 ppt
+    bindsym Down resize shrink height 10 px or 10 ppt
+    bindsym Up resize grow height 10 px or 10 ppt
+    bindsym Right resize shrink width 10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
 bar {
-        status_command          i3status
-        position                bottom
-        workspace_buttons       yes
-        strip_workspace_numbers yes
+    status_command          i3status
+    position                bottom
+    workspace_buttons       yes
+    strip_workspace_numbers yes
 
-        colors {
-                background #131617
-                statusline #ffffff
+    colors {
+        background $bg
 
-                focused_workspace  #914100 #CE5C00 #F7DFCB
-                active_workspace   #ffffff $ac
-                inactive_workspace #888888 #222222
-                urgent_workspace   #ffffff #900000
-            }
+        focused_workspace  $bo $bo $tx
+        inactive_workspace $bg $bg $tx
+        urgent_workspace   $hi $hi $bg
+    }
 }
