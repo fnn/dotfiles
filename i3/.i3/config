@@ -151,7 +151,7 @@ bar {
     colors {
         background $bg
 
-        focused_workspace  $bo $bo $tx
+        focused_workspace  $bg $bo $tx
         inactive_workspace $bg $bg $tx
         urgent_workspace   $hi $hi $bg
     }
