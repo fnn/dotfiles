@@ -60,10 +60,30 @@ alias vim="nvim"
 # ╹ ╹╹ ╹┗━╸╹ ╹
 alias todo='grep "FIXME" * ; grep "TODO" * ; grep "XXX" *'
 alias md="mkdir -p"
-alias del="rm -r"
+alias rmrf="rm -rf"
 function hs
 {
     history | grep $*
 }
 alias hsi='hs -i'
 alias calc='noglob perl -e '\''shift; $x = eval qq(@ARGV); print $x; printf " 0x%x 0%o %b\n", $x, $x, $x'\'' _' ' "'
+
+
+#┏━╸┏━┓╻┏ ╻ ╻┏━┓
+#┣╸ ┃ ┃┣┻┓┃ ┃┗━┓
+#╹  ┗━┛╹ ╹┗━┛┗━┛
+function countdown(){
+   date1=$((`date +%s` + $1)); 
+   while [ "$date1" -ge `date +%s` ]; do 
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
+function stopwatch(){
+  date1=`date +%s`; 
+   while true; do 
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
+    sleep 0.1
+   done
+}
+alias fokus='countdown 2700 && notify-send -u critical -t 0 LASERFOKUS!'
