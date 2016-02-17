@@ -20,6 +20,7 @@ Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'rstacruz/sparkup', { 'for': ['html', 'xhtml'] }
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
 Plug 'honza/dockerfile.vim'
@@ -140,7 +141,7 @@ let g:airline#extensions#tabline#fnamemod=':t'
 " CtrlP
 "=================================================
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.(git|hg|svn)|\_site)$',
+    \ 'dir': '\v[\/](\.git|node_modules|\.sass-cache|bower_components|build)$',
     \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
 
