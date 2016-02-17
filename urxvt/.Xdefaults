@@ -1,16 +1,16 @@
 URxvt*scrollBar: false
 URxvt.font: xft:Source Code Pro for Powerline-8:hinting=True;antialias:True
 
-URxvt.perl-ext-common: default,matcher,clipboard
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!URxvt.perl-ext-common: default,matcher,clipboard
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 
 ! terminal colors ------------------------------------------------------------
 
 
 ! tangoesque scheme
-*background: #111111
+*background: #101010
 *foreground: #babdb6
 ! Black (not tango) + DarkGrey
 *color0:  #000000
