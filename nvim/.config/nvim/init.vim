@@ -88,7 +88,7 @@ set shiftwidth=0
 set softtabstop=-1
 set tabstop=4
 autocmd FileType html,xhtml,ruby,coffee,sass,scss,haml,slim,vim,yaml,crystal setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType css,javascript,javascript.jsx,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType css,javascript,javascript.jsx,snippets setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 " indentLine
 let g:indentLine_char = '┆'
@@ -207,8 +207,8 @@ endfunction
 
 au BufEnter * call UpdateJsHintConf()
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_loc_list_height=6
-let g:syntastic_check_on_open=1
+let g:syntastic_loc_list_height=5
+let g:syntastic_check_on_open=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_debug = 0
 
