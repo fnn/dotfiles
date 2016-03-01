@@ -9,49 +9,34 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Color schemes
-Plug 'trusktr/seti.vim'
 Plug 'tomasr/molokai'
 
 " Statusbar
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Syntax
-Plug 'othree/html5.vim'
+Plug 'othree/html5.vim', { 'for': ['html', 'xhtml'] }
 Plug 'othree/yajs.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'rstacruz/sparkup', { 'for': ['html', 'xhtml'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['ts'] }
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
-Plug 'honza/dockerfile.vim'
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'Yggdroot/indentLine'
-"Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/syntastic'
 
 " Tools
-Plug 'matze/vim-move'
-Plug 'burnettk/vim-angular'
-Plug 'easymotion/vim-easymotion'
 Plug 'Valloric/YouCompleteMe'
-Plug 'ternjs/tern_for_vim'
+Plug 'matze/vim-move'
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
 Plug 'cohama/lexima.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'chemzqm/mycomment.vim'
+
+" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }
-Plug 'airblade/vim-gitgutter'
-Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
-
-
-
-Plug 'matthewsimo/angular-vim-snippets'
-Plug 'scrooloose/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
-
-" Git
-Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -67,7 +52,9 @@ set autoread
 set clipboard+=unnamed
 set history=4096
 set mouse=a
-set scrolloff=5
+set scrolloff=10
+set cursorline
+"set spell spelllang=en_u
 let mapleader=','
 
 
@@ -130,11 +117,14 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 "=============================
-" Airline Config
+" Airline
 " ============================
+let g:airline_theme='distinguished'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':t'
+let g:airline_left_sep = '░'
+let g:airline_right_sep = '░'
 
 
 "=================================================
@@ -173,9 +163,10 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-"=============================
+
+"=================================================
 " Surround
-" ============================
+" ================================================
 map <C-s>" ysiw"eea
 imap <C-s>" <Esc><C-s>"
 map <C-s>' ysiw'eea
@@ -228,14 +219,20 @@ nmap <leader>bl :ls<cr>
 "=================================================
 syntax on
 colorscheme molokai
+let g:used_javascript_libs = 'jquery,underscore,angularjs'
+
+
+"==========================================
+" Folding
+"==========================================
+set foldmethod=syntax
+set foldlevelstart=20
+let javascript_fold=1
 
 
 "=================================================
 " Color und highlightning settings
 "=================================================
-set foldmethod=marker                       " Markers are used to specify folds.
-set foldlevel=1                             " Start folding automatically from level 1
-set fillchars="fold: "                      " Characters to fill the statuslines and vertical separators
 
 
 
