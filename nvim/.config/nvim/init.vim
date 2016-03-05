@@ -17,21 +17,17 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Syntax
 Plug 'othree/html5.vim', { 'for': ['html', 'xhtml'] }
+Plug 'gregsexton/MatchTag', { 'for': ['html', 'xhtml'] }
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'leafgarland/typescript-vim', { 'for': ['ts'] }
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
-Plug 'lervag/vimtex', { 'for': ['tex'] }
-Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/syntastic'
 
 " Tools
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'matze/vim-move'
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-Plug 'cohama/lexima.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'chemzqm/mycomment.vim'
 
 " Snippets
@@ -54,7 +50,6 @@ set history=4096
 set mouse=a
 set scrolloff=10
 set cursorline
-"set spell spelllang=en_u
 let mapleader=','
 
 
@@ -76,9 +71,6 @@ set softtabstop=-1
 set tabstop=4
 autocmd FileType html,xhtml,ruby,coffee,sass,scss,haml,slim,vim,yaml,crystal setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType css,javascript,javascript.jsx,snippets setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
-" indentLine
-let g:indentLine_char = '┆'
 
 
 "==========================================
@@ -143,25 +135,64 @@ nmap <leader>bs :CtrlPMRU<cr>
 
 
 "=================================================
-" Ultisnips & YCM
+" Deoplete & UltiSnips
 "=================================================
-let g:UltiSnipsUsePythonVersion=2
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+"set completeopt=longest,noselect,noinsert,menuone
+set completeopt+=noselect
+set completeopt+=noinsert
+let g:deoplete#enable_at_startup=1
+call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
 
-let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+" Next menu item, expand snippet, jump to next placeholder or insert literal tab
+let g:UltiSnipsJumpForwardTrigger="<NOP>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrJumpForwardOrReturnTab()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<TAB>"
+    endif
+endfunction
+inoremap <expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ "<C-R>=ExpandSnippetOrJumpForwardOrReturnTab()<CR>"
 
+" jump to next placeholder otherwise do nothing
+snoremap <buffer> <silent> <TAB>
+    \ <ESC>:call UltiSnips#JumpForwards()<CR>
 
-set completeopt=longest,noselect,noinsert,menuone
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+" previous menu item, jump to previous placeholder or do nothing
+let g:UltiSnipsJumpBackwordTrigger = "<NOP>"
+inoremap <expr> <S-TAB>
+    \ pumvisible() ? "\<C-p>" :
+    \ "<C-R>=UltiSnips#JumpBackwards()<CR>"
 
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+" jump to previous placeholder otherwise do nothing
+snoremap <buffer> <silent> <S-TAB>
+    \ <ESC>:call UltiSnips#JumpBackwards()<CR>
+
+" expand snippet, close menu or insert newline
+let g:UltiSnipsExpandTrigger = "<NOP>"
+let g:ulti_expand_or_jump_res = 0
+inoremap <silent> <CR> <C-r>=<SID>ExpandSnippetOrReturnEmptyString()<CR>
+function! s:ExpandSnippetOrReturnEmptyString()
+    if pumvisible()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<C-y>\<CR>"
+    endif
+    else
+        return "\<CR>"
+endfunction
+
+" inoremap <C-h> {{{1
+inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+
+" inoremap <BS> {{{1
+inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 
 
 "=================================================
@@ -230,10 +261,17 @@ set foldlevelstart=20
 let javascript_fold=1
 
 
+"==========================================
+" Spelling
+"==========================================
+map <F3> :setlocal spell! spelllang=en_u<CR>
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+
 "=================================================
 " Color und highlightning settings
 "=================================================
-
 
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
