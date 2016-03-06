@@ -26,6 +26,7 @@ Plug 'scrooloose/syntastic'
 " Tools
 Plug 'Shougo/deoplete.nvim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'carlitux/deoplete-ternjs'
 Plug 'matze/vim-move'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chemzqm/mycomment.vim'
@@ -137,9 +138,8 @@ nmap <leader>bs :CtrlPMRU<cr>
 "=================================================
 " Deoplete & UltiSnips
 "=================================================
-"set completeopt=longest,noselect,noinsert,menuone
-set completeopt+=noselect
-set completeopt+=noinsert
+set completeopt=longest,noselect,noinsert,menuone
+" let g:deoplete#disable_auto_complete = 1
 let g:deoplete#enable_at_startup=1
 call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
 
@@ -229,10 +229,19 @@ endfunction
 
 au BufEnter * call UpdateJsHintConf()
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_loc_list_height=5
+let g:syntastic_loc_list_height=10
 let g:syntastic_check_on_open=0
 let g:syntastic_auto_loc_list=1
-let g:syntastic_debug = 0
+let g:syntastic_debug=0
+autocmd VimEnter * SyntasticToggleMode
+
+
+"=================================================
+" Tern
+"=================================================
+let g:tern_map_prefix='<leader>'
+let g:tern_map_keys=1
+let g:tern_show_argument_hints=0
 
 
 "=================================================
@@ -278,5 +287,4 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 filetype indent on
 filetype plugin on
 au BufRead /tmp/mutt-* set tw=72
-
 
