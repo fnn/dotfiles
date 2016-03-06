@@ -1,5 +1,6 @@
 URxvt*scrollBar: false
-URxvt.font: xft:Source Code Pro for Powerline-8:hinting=True;antialias:True
+URxvt.font: xft:Hack:pixelsize=10:hinting=True;antialias:True
+#URxvt.font: xft:Source Code Pro for Powerline-8:hinting=True;antialias:True
 
 !URxvt.perl-ext-common: default,matcher,clipboard
 !URxvt.keysym.Shift-Control-C: perl:clipboard:copy
