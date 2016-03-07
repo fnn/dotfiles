@@ -189,7 +189,7 @@ function! s:ExpandSnippetOrReturnEmptyString()
 endfunction
 
 " inoremap <C-h> {{{1
-inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
 
 " inoremap <BS> {{{1
 inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
