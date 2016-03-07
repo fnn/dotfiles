@@ -250,7 +250,7 @@ let g:tern_show_argument_hints=0
 nmap <C-t> :enew<cr>                        " new buffer
 nmap <C-h> :bprevious<cr>                   " move to next buffer
 nmap <C-l> :bnext<cr>                       " move to previous buffer
-nmap <leader>bq :bp <BAR> bd #<cr>
+nmap <leader>bw :bp <BAR> bd #<cr>
 nmap <leader>bl :ls<cr>
 
 
