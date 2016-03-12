@@ -22,6 +22,8 @@ Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
 Plug 'scrooloose/syntastic'
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+
 
 " Tools
 Plug 'Shougo/deoplete.nvim'
