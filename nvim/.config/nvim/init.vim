@@ -24,7 +24,6 @@ Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
 Plug 'scrooloose/syntastic'
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 
-
 " Tools
 Plug 'Shougo/deoplete.nvim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -142,7 +141,7 @@ nmap <leader>bs :CtrlPMRU<cr>
 " Deoplete & UltiSnips
 "===================================================================================
 set completeopt=longest,noselect,noinsert,menuone
-" let g:deoplete#disable_auto_complete = 1
+let g:deoplete#disable_auto_complete = 1
 let g:deoplete#enable_at_startup=1
 call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
 
@@ -154,7 +153,7 @@ function! ExpandSnippetOrJumpForwardOrReturnTab()
     if g:ulti_expand_or_jump_res > 0
         return snippet
     else
-        return "\<TAB>"
+        return deoplete#mappings#manual_complete()
     endif
 endfunction
 inoremap <expr> <TAB>
