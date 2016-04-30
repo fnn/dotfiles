@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:Source Code Pro for Powerline 7
+font pango:Nimbus Mono 6
 
 # color defines
 set $bg     #131617
@@ -28,6 +28,10 @@ bindsym $mod+Return exec urxvt
 
 # x selection paste
 bindsym $mod+shift+v exec --no-startup-id "xdotool click 2"
+
+# sound
+bindcode 122 exec --no-startup-id "amixer -q set Master 5%- unmute"
+bindcode 123 exec --no-startup-id "amixer -q set Master 5%+ unmute"
 
 # kill focused window
 bindsym $mod+Shift+w kill
@@ -79,40 +83,31 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-#bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-# start apps
-bindsym $mod+F1 exec urxvt -e ranger
-bindsym $mod+F2 exec urxvt -e mutt
-bindsym $mod+F3 exec urxvt -e nvim
 
 # switch to workspace
-bindsym $mod+1 workspace number 1 0001 
-bindsym $mod+2 workspace number 2 0010 
-bindsym $mod+3 workspace number 3 0011 
-bindsym $mod+4 workspace number 4 0100 
-bindsym $mod+5 workspace number 5 0101 
-bindsym $mod+6 workspace number 6 0110 
-bindsym $mod+7 workspace number 7 0111 
-bindsym $mod+8 workspace number 8 1000 
-bindsym $mod+9 workspace number 9 1001 
-bindsym $mod+0 workspace number 10 1010 
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 bindsym $mod+p workspace pwd
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1 0001 
-bindsym $mod+Shift+2 move container to workspace number 2 0010 
-bindsym $mod+Shift+3 move container to workspace number 3 0011 
-bindsym $mod+Shift+4 move container to workspace number 4 0100 
-bindsym $mod+Shift+5 move container to workspace number 5 0101 
-bindsym $mod+Shift+6 move container to workspace number 6 0110 
-bindsym $mod+Shift+7 move container to workspace number 7 0111 
-bindsym $mod+Shift+8 move container to workspace number 8 1000 
-bindsym $mod+Shift+9 move container to workspace number 9 1001 
-bindsym $mod+Shift+0 move container to workspace number 10 1010 
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+p move container to workspace pwd
 
 # keepass
@@ -124,6 +119,20 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+set $mode_system [L] lock, [E] logout, [S] suspende, [R] reboot, [Shift+S] shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id "$HOME/dotfiles/i3/.i3/i3exit lock", mode "default"
+    bindsym e exec --no-startup-id "$HOME/dotfiles/i3/.i3/i3exit logout", mode "default"
+    bindsym s exec --no-startup-id "$HOME/dotfiles/i3/.i3/i3exit suspend", mode "default"
+    bindsym r exec --no-startup-id "$HOME/dotfiles/i3/.i3/i3exit reboot", mode "default"
+    bindsym Shift+s exec --no-startup-id "$HOME/dotfiles/i3/.i3/i3exit shutdown", mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
