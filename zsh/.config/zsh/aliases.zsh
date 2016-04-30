@@ -12,6 +12,7 @@ alias agr='sudo apt-get remove'
 # ┃╺┓┃ ┃ 
 # ┗━┛╹ ╹
 alias g='git'
+alias gf='git fetch'
 alias ga='git add'
 alias gaa='git add --all'
 alias gcmsg='git commit -m'
@@ -58,6 +59,7 @@ alias vim="nvim"
 # ┏┳┓┏━┓┏━╸╻ ╻
 # ┃┃┃┣━┫┣╸ ┣━┫
 # ╹ ╹╹ ╹┗━╸╹ ╹
+alias pc='pass -c'
 alias todo='grep "FIXME" * ; grep "TODO" * ; grep "XXX" *'
 alias md="mkdir -p"
 alias rmrf="rm -rf"

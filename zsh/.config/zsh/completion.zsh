@@ -1,4 +1,4 @@
-#autoload -Uz compinit
+autoload -Uz compinit
 compinit
 #autoload -U ~/.config/zsh/completion/*(:t)
 zstyle ':completion:*' auto-description 'specify: %d'

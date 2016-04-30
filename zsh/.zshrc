@@ -1,12 +1,5 @@
 for config (~/.config/zsh/*.zsh) source $config
 
-#ZSH_THEME="fnnpth"
-
-#plugins=(git docker ubuntu node npm gulp history)
-
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-
-
 # alias
 alias cpu3='echo "30" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct'
 alias cpu4='echo "40" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct'
@@ -18,6 +11,3 @@ alias cpu9='echo "90" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_p
 alias cpu0='echo "100" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct'
 
 export EDITOR=nvim
-
-# Virtualenv
-#export WORKON_HOME=~/Development/Python/
