@@ -11,3 +11,5 @@ alias cpu9='echo "90" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_p
 alias cpu0='echo "100" | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct'
 
 export EDITOR=nvim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
