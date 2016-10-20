@@ -7,9 +7,10 @@ call plug#begin('~/.config/nvim/plugged')
 " Sidebar
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Color schemes
-Plug 'tomasr/molokai'
+Plug 'josuegaleas/jay'
 
 " Statusbar
 Plug 'vim-airline/vim-airline'
@@ -19,22 +20,38 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'othree/html5.vim', { 'for': ['html', 'xhtml'] }
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'xhtml'] }
 Plug 'othree/yajs.vim'
+Plug 'elzr/vim-json'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
-Plug 'scrooloose/syntastic'
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript'] }
+Plug 'hdima/python-syntax'
+Plug 'jiangmiao/auto-pairs'
+Plug 'neomake/neomake'
+
+" Completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'mhartington/vim-angular2-snippets'
+
+"Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+"Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mhartington/deoplete-typescript', { 'for': ['typescript'] }
+Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
+Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss', 'less'] }
 
 " Tools
-Plug 'Shougo/deoplete.nvim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'carlitux/deoplete-ternjs'
 Plug 'matze/vim-move'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'rking/ag.vim'
+"Plug 'Yggdroot/indentLine' " Causes lags while scrolling
 Plug 'chemzqm/mycomment.vim'
-
-" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 call plug#end()
 
@@ -43,8 +60,8 @@ call plug#end()
 " Basic settings
 "===================================================================================
 set shell=/bin/zsh
-set number
 set laststatus=2
+set relativenumber
 set showmode
 set hidden
 set autoread
@@ -73,7 +90,10 @@ set shiftwidth=0
 set softtabstop=-1
 set tabstop=4
 autocmd FileType html,xhtml,ruby,coffee,sass,scss,haml,slim,vim,yaml,crystal setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType css,javascript,javascript.jsx,snippets setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType css,javascript,javascript.jsx,typescript,snippets setlocal shiftwidth=2 softtabstop=2 tabstop=2
+
+"let g:indentLine_color_term = 239
+"let g:indentLine_char = '│'
 
 
 "===================================================================================
@@ -91,12 +111,15 @@ set nohlsearch
 "===================================================================================
 map <F2> :NERDTreeToggle<CR>
 
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrows=1
-let g:NERDTreeWinSize=30
-let g:NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeDirArrowExpandable = '├'
-let g:NERDTreeDirArrowCollapsible = '└'
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 35
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeDirArrowExpandable = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
+
+let NERDTreeIgnore = ['.git$', 'node_modules']
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -110,138 +133,74 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" close vim if only NERDTree is left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 "===================================================================================
 " Airline
 "===================================================================================
 let g:airline_theme='distinguished'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=0
+let g:airline_extensions=['tabline']
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline_left_sep = '░'
 let g:airline_right_sep = '░'
 
 
 "===================================================================================
-" CtrlP
+" FZF
 "===================================================================================
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.git|node_modules|\.sass-cache|bower_components|build)$',
-    \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
+let g:fzf_layout = { 'window:': 'enew' }
 
-"let g:ctrlp_working_path_mode='r'
-nmap <leader>p :CtrlP<cr>
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
+map <leader>p :Files<cr>
 
 
 "===================================================================================
 " Deoplete & UltiSnips
 "===================================================================================
-set completeopt=longest,noselect,noinsert,menuone
-let g:deoplete#disable_auto_complete = 1
+set completeopt=longest,menuone,preview
+set omnifunc=syntaxcomplete#Complete
+
 let g:deoplete#enable_at_startup=1
-call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
+let g:deoplete#enable_smart_case=1
+"let g:deoplete#disable_auto_complete=1
+ 
+let g:deoplete#omni#functions={}
+let g:deoplete#omni#functions.javascript=[
+  \ 'jspc#omni'
+\]
+let g:deoplete#omni#functions.css='csscomplete#CompleteCSS'
 
-" Next menu item, expand snippet, jump to next placeholder or insert literal tab
-let g:UltiSnipsJumpForwardTrigger="<NOP>"
-let g:ulti_expand_or_jump_res = 0
-function! ExpandSnippetOrJumpForwardOrReturnTab()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return deoplete#mappings#manual_complete()
-    endif
-endfunction
-inoremap <expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ "<C-R>=ExpandSnippetOrJumpForwardOrReturnTab()<CR>"
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'file', 'neosnippet']
 
-" jump to next placeholder otherwise do nothing
-snoremap <buffer> <silent> <TAB>
-    \ <ESC>:call UltiSnips#JumpForwards()<CR>
+inoremap <expr><TAB> pumvisible() ? "\<c-n>" : "\<TAB>"
+imap <expr><c-j> neosnippet#expandable_or_jumpable() ?
+		\ "\<Plug>(neosnippet_expand_or_jump)" : ""
 
-" previous menu item, jump to previous placeholder or do nothing
-let g:UltiSnipsJumpBackwordTrigger = "<NOP>"
-inoremap <expr> <S-TAB>
-    \ pumvisible() ? "\<C-p>" :
-    \ "<C-R>=UltiSnips#JumpBackwards()<CR>"
-
-" jump to previous placeholder otherwise do nothing
-snoremap <buffer> <silent> <S-TAB>
-    \ <ESC>:call UltiSnips#JumpBackwards()<CR>
-
-" expand snippet, close menu or insert newline
-let g:UltiSnipsExpandTrigger = "<NOP>"
-let g:ulti_expand_or_jump_res = 0
-inoremap <silent> <CR> <C-r>=<SID>ExpandSnippetOrReturnEmptyString()<CR>
-function! s:ExpandSnippetOrReturnEmptyString()
-    if pumvisible()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<C-y>\<CR>"
-    endif
-    else
-        return "\<CR>"
-endfunction
-
-" inoremap <BS>
-inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+"autocmd MyAutoCmd CompleteDone * pclose!
 
 
 "===================================================================================
-" Surround
+" Neomake
 "===================================================================================
-map <C-s>" ysiw"eea
-imap <C-s>" <Esc><C-s>"
-map <C-s>' ysiw'eea
-imap <C-s>' <Esc><C-s>'
+"sudo pip2/pip3 install vulture -U
+"sudo pip2/pip3 install flake8 -U
+let g:neomake_python_enabled_makers=['flake8', 'vulture']
 
-
-"===================================================================================
-" Syntastic
-"===================================================================================
-function s:find_jshintrc(dir)
-    let l:found = globpath(a:dir, '.jshintrc')
-    if filereadable(l:found)
-        return l:found
-    endif
-
-    let l:parent = fnamemodify(a:dir, ':h')
-    if l:parent != a:dir
-        return s:find_jshintrc(l:parent)
-    endif
-
-    return "~/.jshintrc"
-endfunction
-
-function UpdateJsHintConf()
-    let l:dir = expand('%:p:h')
-    let l:jshintrc = s:find_jshintrc(l:dir)
-    let g:syntastic_javascript_jshint_args = l:jshintrc
-endfunction
-
-au BufEnter * call UpdateJsHintConf()
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_loc_list_height=10
-let g:syntastic_check_on_open=0
-let g:syntastic_auto_loc_list=1
-let g:syntastic_debug=0
-autocmd VimEnter * SyntasticToggleMode
-map <F3> :SyntasticToggleMode<CR>
+" run on every write
+"autocmd! BufWritePost * Neomake
 
 
 "===================================================================================
 " Tern
 "===================================================================================
-let g:tern_map_prefix='<leader>'
-let g:tern_map_keys=1
-let g:tern_show_argument_hints=0
+
 
 
 "===================================================================================
@@ -258,8 +217,9 @@ nmap <leader>bl :ls<cr>
 " Color und highlightning settings
 "===================================================================================
 syntax on
-colorscheme molokai
+colorscheme jay
 let g:used_javascript_libs = 'jquery,underscore,angularjs'
+let python_highlight_all = 1
 
 
 "===================================================================================
@@ -276,8 +236,6 @@ let javascript_fold=1
 map <F4> :setlocal spell! spelllang=en_u<CR>
 hi clear SpellBad
 hi SpellBad cterm=underline
-
-
 
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
