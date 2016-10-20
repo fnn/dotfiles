@@ -1,40 +1,52 @@
 URxvt*scrollBar: false
-URxvt.font: xft:DejaVu Sans Mono:pixelsize=10:hinting=True;antialias:True
-#URxvt.font: xft:Hack:pixelsize=10:hinting=True;antialias:True
-#URxvt.font: xft:Source Code Pro for Powerline-8:hinting=True;antialias:True
+
+URxvt.font: xft:Hack:style=Regular:pixelsize=10:hinting=True;antialias:True
+!URxvt.font: xft:DejaVu Sans Mono:pixelsize=10:hinting=True;antialias:True
+!URxvt.font: xft:Hack:pixelsize=10:hinting=True;antialias:True
+!URxvt.font: xft:Source Code Pro for Powerline-8:hinting=True;antialias:True
 
 !URxvt.perl-ext-common: default,matcher,clipboard
 !URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 !URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
+Xft.dpi: 80
 
 ! terminal colors ------------------------------------------------------------
 
+! special
+*.foreground:   #ffffff
+*.background:   #050505
+*.cursorColor:  #ffffff
 
-! tangoesque scheme
-*background: #101010
-*foreground: #babdb6
-! Black (not tango) + DarkGrey
-*color0:  #000000
-*color8:  #555753
-! DarkRed + Red
-*color1:  #ff6565
-*color9:  #ff8d8d
-! DarkGreen + Green
-*color2:  #93d44f
-*color10: #c8e7a8
-! DarkYellow + Yellow
-*color3:  #eab93d
-*color11: #ffc123
-! DarkBlue + Blue
-*color4:  #204a87
-*color12: #3465a4
-! DarkMagenta + Magenta
-*color5:  #ce5c00
-*color13: #f57900
-!DarkCyan + Cyan (both not tango)
-*color6:  #89b6e2
-*color14: #46a4ff
-! LightGrey + White
-*color7:  #cccccc
-*color15: #ffffff
+! black
+*.color0:       #050505
+*.color8:       #1c1b19
+
+! red
+*.color1:       #B81109
+*.color9:       #E8160C
+
+! green
+*.color2:       #1CB228
+*.color10:      #24E534
+
+! yellow
+*.color3:       #BAA407
+*.color11:      #FCDF09
+
+! blue
+*.color4:       #2C5FAD
+*.color12:      #408AFC
+
+! magenta
+*.color5:       #e35682
+*.color13:      #e02c6d
+
+! cyan
+*.color6:       #16a085
+*.color14:      #1abc9c
+
+! white
+*.color7:       #FFFFFF
+*.color15:       #EBE3E3
+
